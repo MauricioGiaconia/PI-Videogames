@@ -1,0 +1,43 @@
+.navContainer{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    background-color: #B49C6F;
+    margin: 0 auto;
+    -webkit-clip-path: polygon(28% 0, 100% 0%, 100% 100%, 30% 100%);
+    clip-path: polygon(28% 0, 100% 0%, 100% 100%, 30% 100%);
+    z-index: 1;
+    justify-content: flex-end;
+}
+
+
+
+.navContainer ul{
+    list-style: none;
+    align-self: center;
+    height: 100%;
+}
+
+.navContainer ul li{
+    display: inline;
+    text-decoration: none;
+    padding: 10px;  
+    color: #fff;
+    float: left;
+
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+a img{
+    width: 50px;
+}
+
+.selected{
+    animation: selectedOption 4s infinite !important;
+}
