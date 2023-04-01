@@ -2,14 +2,15 @@ import styles from './Home.module.css';
 import headerPC from '../../img/retropc.png';
 import characterHome from '../../img/characterHome.png';
 import piVideogamesHome from '../../img/piVideogamesHome.png';
+import News from '../News/News';
 
 export default function Home(props){
 
-    return <div>
+    return <div id={`${styles.homeContainer}`}>
         <div id={`${styles.headerBlock}`}>
 
             <div id={`${styles.pcContainer}`}>
-                <img src={headerPC} alt="" />
+                <img src={headerPC} alt="retro pc" />
             </div>
 
             <div className={`${styles.backgroundPoly}`}>
@@ -26,6 +27,12 @@ export default function Home(props){
            
        
         </div>
-        
+
+        <div>
+            <News></News>
+            <News></News>
+            <News></News>
+        </div>
+       
     </div>
 }

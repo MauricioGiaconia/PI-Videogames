@@ -1,43 +1,100 @@
-.navContainer{
+/* Opciona candidate */
+/*
+nav {
+    background-color: #1a1a1a;
+    height: 60px;
     display: flex;
-    position: absolute;
-    justify-content: center;
-    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: fixed;
+    top: 0;
     width: 100%;
-    background-color: #B49C6F;
-    margin: 0 auto;
-    -webkit-clip-path: polygon(28% 0, 100% 0%, 100% 100%, 30% 100%);
-    clip-path: polygon(28% 0, 100% 0%, 100% 100%, 30% 100%);
-    z-index: 1;
-    justify-content: flex-end;
-}
-
-
-
-.navContainer ul{
+    z-index: 9999;
+    }
+    
+    nav ul {
     list-style: none;
-    align-self: center;
-    height: 100%;
-}
-
-.navContainer ul li{
-    display: inline;
-    text-decoration: none;
-    padding: 10px;  
+    margin: 0;
+    padding: 0;
+    display: flex;
+    }
+    
+    nav li {
+    margin-right: 20px;
+    }
+    
+    nav li:last-child {
+    margin-right: 0;
+    }
+    
+    nav a {
     color: #fff;
-    float: left;
-
-}
-
-a{
     text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    }
+    
+    nav a:hover {
+    color: #ccc;
+    }*/
+/* Vertical */
+nav {
+    background-color: #1a1a1a;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin-right: 20px;
+  }
+  
+  nav li:last-child {
+    margin-right: 0;
+  }
+  
+  nav a {
     color: #fff;
-}
-
-a img{
-    width: 50px;
-}
-
-.selected{
-    animation: selectedOption 4s infinite !important;
-}
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+  }
+  
+  nav a:hover {
+    color: #f8c93c;
+  }
+  
+  nav a:before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  nav a:hover:before {
+    transform: scaleX(1);
+    transform-origin: right;
+  }

@@ -12,8 +12,8 @@ export default function Nag(props){
 
     return <nav className={`${styles.navContainer}`}>
        <ul>
-            <li><Link  className={splitLocation[1] === 'home' ? `${styles.selected}` : ''} to='/'> <img src={homeImg} alt="home" /></Link></li>     
-            <li><Link  className={splitLocation[1] === 'videogames' ? `${styles.selected}` : ''} to='/videogames'> <img src={videogameImg} alt="home" /></Link></li>    
+            <li><Link  className={splitLocation[1] === 'home' ? `${styles.selected} ${styles.logo}` : `${styles.logo}`} to='/'>HOME</Link></li>     
+            <li><Link  className={splitLocation[1] === 'videogames' ? `${styles.selected} ${styles.logo}` : `${styles.logo}`} to='/videogames'> GAMES</Link></li>    
     
         </ul>
     </nav>

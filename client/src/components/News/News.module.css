@@ -1,0 +1,17 @@
+.newsContainer{
+    width: 33.33%;
+    border: 1px black solid;
+    float: left;
+    flex-grow: 1;
+    height: 100%;
+}
+
+hr{
+    background-color: #2c3e50;
+    padding: 2px;
+    border: 0;
+    border-radius: 25px;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 5px;
+}

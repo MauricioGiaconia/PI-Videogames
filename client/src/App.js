@@ -17,7 +17,20 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/videogames' element= {<Cards></Cards>} />
         </Routes>
-   
+
+      
+        <footer class="contact-footer">
+          <div class="contact-info">
+            <h3>Contacto</h3>
+            <ul>
+              <li>Dirección: Calle Falsa 123</li>
+              <li>Teléfono: +1 555 1234</li>
+              <li>Email: info@juegos.com</li>
+            </ul>
+          </div>
+      </footer>
+      
+      
     </div>
   );
 }
