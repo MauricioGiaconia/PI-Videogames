@@ -12,9 +12,9 @@ export default function Nag(props){
 
     return <nav className={`${styles.navContainer}`}>
        <ul>
-            <li><Link  className={splitLocation[1] === 'home' ? `${styles.selected} ${styles.logo}` : `${styles.logo}`} to='/'>HOME</Link></li>     
-            <li><Link  className={splitLocation[1] === 'videogames' ? `${styles.selected} ${styles.logo}` : `${styles.logo}`} to='/videogames'> GAMES</Link></li>    
-    
+            <li><Link  className={splitLocation[1] === '' ? `${styles.selected}` : ``} to='/'>HOME</Link></li>     
+            <li><Link  className={splitLocation[1] === 'videogames' ? `${styles.selected}` : ``} to='/videogames'> GAMES</Link></li>    
+            <li><Link  className={splitLocation[1] === 'newVideogame' ? `${styles.selected}` : ``} to='/newVideogame'> + </Link></li>    
         </ul>
     </nav>
 }

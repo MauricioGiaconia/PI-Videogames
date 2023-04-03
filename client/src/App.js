@@ -3,6 +3,7 @@ import {  Route, Routes } from 'react-router-dom';
 import Cards from './components/Cards/Cards';
 import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
+import NewGameForm from './components/NewGameForm/NewGameForm';
 
 
 function App() {
@@ -15,12 +16,13 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/videogames' element= {<Cards></Cards>} />
+          <Route path='/videogames' element={<Cards></Cards>} />
+          <Route path='/newVideogame' element={<NewGameForm></NewGameForm>} />
         </Routes>
 
       
-        <footer class="contact-footer">
-          <div class="contact-info">
+        <footer className="contact-footer">
+          <div className="contact-info">
             <h3>Contacto</h3>
             <ul>
               <li>Dirección: Calle Falsa 123</li>

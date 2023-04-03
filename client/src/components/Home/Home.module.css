@@ -1,5 +1,4 @@
-#homeContainer{
-     
+.homeContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -8,82 +7,59 @@
     height: 100%;
     /* Dejo espacio para el footer */
     flex-grow: 1;
-
 }
 
-#headerBlock{
-   
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    height: 500px;
+.banner {
     background-image: url('../../img/homeBG.png');
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+.columnas{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 50px auto;
+    max-width: 1000px;
 }
 
-#pcContainer{
-    transform: scalex(-1);
-    position: absolute;
-    left: 0;
-    bottom: 0;
+.bannerContent{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex: auto;
+    background-color: #0706178f;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.pcContainer{
+
     height: 400px; 
     z-index: 1;
 }
 
-#pcContainer img{
+.pcContainer img{
   height: 100%;
 }
 
-
-#logoContainer{
-    height: 350px;
-    width: 300px;
+.logoContainer{
+    width: 600px;
     margin: 0 auto;
-    text-align: -webkit-center;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
+   
 }
 
-#characterContainer img{
-  width: 250px;
-  position: absolute;
-  bottom: 0;
-}
-
-#logoContainer{
-    width: 300px;
-}
-
-#logoContainer img{
+.logoContainer img{
     width: 100%;
     height: 100%;
 }
 
-.characterLogo{
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    transform: scaleX(-1);
-}
 
-.piVideogames{
-    width: 550px;
-    margin-top: 25px;
-    margin-left: 200px;
-    width: 550px;
-
-}
-
-.backgroundPoly{
-    width: 100%;
-    height: 100%;
- 
-
-}
 

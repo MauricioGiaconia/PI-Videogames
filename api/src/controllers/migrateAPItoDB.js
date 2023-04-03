@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Genres, Platforms, Stores } = require('../db');
+const { Genres, Platforms, Stores, Developers } = require('../db');
 
 const axios = require('axios');
 
@@ -77,4 +77,31 @@ const pushAllGenres = async () => {
 
 }
 
-module.exports = { pushAllGenres, pushAllPlatforms, pushAllStores }
+const pushAllDevelopers = async () => {
+    try {
+       
+        const response = await axios.get(`https://api.rawg.io/api/developers?key=${API_KEY}`)
+
+        const names = response.data['results'].map((genre) => {
+            return {'name' : genre.name};
+        });
+
+        //Nuevo desarrollador agregado para agregar juegos independites o 
+        // juegos que no son AAA
+        names.push({name : 'Indie'});
+
+        Developers.bulkCreate(names, { ignoreDuplicates: true, fields: ['name'] })
+                .then(() => {
+                    console.log('Desarrolladores creados correctamente');
+                })
+                .catch((error) => {
+                    console.error('Error al crear desarrolladores:', error);
+                });
+
+    } catch (err) {
+       
+        return (`¡Error al traer a los desarrolladores!`);
+    };
+}
+
+module.exports = { pushAllGenres, pushAllPlatforms, pushAllStores, pushAllDevelopers }

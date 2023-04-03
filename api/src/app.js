@@ -27,6 +27,8 @@ server.use('/', routes);
 server.use('/videogames', routes);
 server.use('/videogames/:page', routes);
 server.use('/videogames/detail', routes);
+server.use('/genres', routes);
+server.use('/developers', routes);
 server.use('/createvideogame', routes);
 
 // Error catching endware.

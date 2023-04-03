@@ -5,7 +5,7 @@ export default function Card(props){
     return <div className={`${styles.card}`}>
        
         <div className={`${styles.imgContainer}`}>
-            <img src={props.img} alt={`Image of ${props.title}`} />
+            <img src={props.img} alt={`${props.title}`} />
         </div>
         <h3>{props.title}</h3>
         <h4>{props.rating}</h4>

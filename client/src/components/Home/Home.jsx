@@ -6,29 +6,28 @@ import News from '../News/News';
 
 export default function Home(props){
 
-    return <div id={`${styles.homeContainer}`}>
-        <div id={`${styles.headerBlock}`}>
+    return <div className={`${styles.homeContainer}`}>
+        <div className={`${styles.banner}`}>
 
-            <div id={`${styles.pcContainer}`}>
-                <img src={headerPC} alt="retro pc" />
-            </div>
-
-            <div className={`${styles.backgroundPoly}`}>
-            </div>
-            <div id={`${styles.logoContainer}`}>
-                <img className={`${styles.characterLogo}`} src={characterHome} alt="character" />
-                <div className={`${styles.piVideogames}`}>
-               
+            <div className={`${styles.bannerContent}`}>
+                <div className={`${styles.logoContainer}`}>
                     <img src={piVideogamesHome} alt="logo" />
                 </div>
-                
+                <div className={`${styles.pcContainer}`}>
+                    <img src={headerPC} alt="retro pc" />
+                </div>
             </div>
+
+            
+
+           
+          
             
            
        
         </div>
 
-        <div>
+        <div className={`${styles.columnas}`}>
             <News></News>
             <News></News>
             <News></News>

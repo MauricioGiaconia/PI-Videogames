@@ -20,13 +20,14 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
-const { pushAllGenres, pushAllPlatforms, pushAllStores } = require('./src/controllers/migrateAPItoDB.js');
+const { pushAllGenres, pushAllPlatforms, pushAllStores, pushAllDevelopers } = require('./src/controllers/migrateAPItoDB.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     pushAllGenres();
     pushAllPlatforms();
+    pushAllDevelopers();
     pushAllStores();
     console.log('%s listening at 3001'); 
     // eslint-disable-line no-console

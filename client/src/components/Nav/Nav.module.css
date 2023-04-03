@@ -1,74 +1,31 @@
-/* Opciona candidate */
-/*
-nav {
+.navContainer {
     background-color: #1a1a1a;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-    }
-    
-    nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    }
-    
-    nav li {
-    margin-right: 20px;
-    }
-    
-    nav li:last-child {
-    margin-right: 0;
-    }
-    
-    nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-transform: uppercase;
-    }
-    
-    nav a:hover {
-    color: #ccc;
-    }*/
-/* Vertical */
-nav {
-    background-color: #1a1a1a;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-    position: fixed;
     top: 0;
     width: 100%;
     z-index: 9999;
   }
   
-  nav ul {
+  .navContainer ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
   }
   
-  nav li {
+  .navContainer li {
     margin-right: 20px;
   }
   
-  nav li:last-child {
+  .navContainer li:last-child {
     margin-right: 0;
   }
   
-  nav a {
+  .navContainer a {
     color: #fff;
     text-decoration: none;
     font-size: 1.2em;
@@ -77,11 +34,11 @@ nav {
     position: relative;
   }
   
-  nav a:hover {
+  .navContainer a:hover {
     color: #f8c93c;
   }
   
-  nav a:before {
+  .navContainer a:before {
     content: '';
     width: 100%;
     height: 3px;
@@ -91,10 +48,14 @@ nav {
     left: 0;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
   
-  nav a:hover:before {
+  .navContainer a:hover:before {
     transform: scaleX(1);
     transform-origin: right;
+  }
+
+  .selected{
+    color: #f8c93c !important;
   }

@@ -10,9 +10,11 @@ const Genre = require('./models/Genres');
 const Platform = require('./models/Platform');
 const Store = require('./models/Store');
 const Videogame = require('./models/Videogame');
+const Developer = require('./models/Developers');
 const VideogameGenres = require('./models/VideogameGenres');
 const VideogameStores = require('./models/VideogameStores');
 const VideogamePlatforms = require('./models/VideogamePlatforms');
+const VideogameDevelopers = require('./models/VideogameDevelopers');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -43,16 +45,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogames, Genres, Stores, Platforms } = sequelize.models;
+const { Videogames, Genres, Stores, Platforms, Developers } = sequelize.models;
 
+Videogame(sequelize);
 Genre(sequelize);
 Platform(sequelize);
 Store(sequelize);
-Videogame(sequelize);
+Developer(sequelize);
 VideogameGenres(sequelize);
 VideogameStores(sequelize);
 VideogamePlatforms(sequelize);
-
+VideogameDevelopers(sequelize);
 
 
 
@@ -67,6 +70,9 @@ Stores.belongsToMany(Videogames, {through : 'videogameStores'});
 
 Videogames.belongsToMany(Platforms, {through : 'videogamePlatforms'});
 Platforms.belongsToMany(Videogames, {through : 'videogamePlatforms'});
+
+Videogames.belongsToMany(Developers, {through : 'videogameDevelopers'});
+Developers.belongsToMany(Videogames, {through : 'videogameDevelopers'});
 
 
 module.exports = {
