@@ -1,15 +1,15 @@
 import styles from './Card.module.css';
 
 export default function Card(props){
-   
+    
     return <div className={`${styles.card}`}>
-       
+        
         <div className={`${styles.imgContainer}`}>
             <img src={props.img} alt={`${props.title}`} />
         </div>
         <h3>{props.title}</h3>
-        <h4>{props.rating}</h4>
-        <p>Release: {props.release}</p>
+        <h4>Rating: {props.rating}</h4>
+        <p>Release: {props.release.split('T')[0]}</p>
 
         <div className={`${styles.cardButtons}`}>
             <button className={`${styles.btnFav}`}>Fav</button>

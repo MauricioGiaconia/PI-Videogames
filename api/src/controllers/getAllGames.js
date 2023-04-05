@@ -25,11 +25,13 @@ const getAllGames = async(req, res) => {
         let imgData = '';
 1
         for (const game of dbResponse){
-            console.log(game.img);
+           
          
             imgBase64 = game.img.toString('base64');
-            imgData = `data:image/png;base64,${imgBase64}`
-            console.log(imgData);
+            const buffer = Buffer.from(imgBase64, 'base64');
+
+         
+            imgData = `${buffer}`
             game.img = imgData;
         }
 

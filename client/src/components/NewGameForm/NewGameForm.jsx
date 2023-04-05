@@ -15,7 +15,9 @@ export default function NewGameForm(props){
     const platforms = useSelector((state) => state.platforms);
     const developers = useSelector((state) => state.developers);
     const stores = useSelector((state) => state.stores);
+    const error = useSelector((state) => state.error );
     const [loading, isLoading] = useState(true);
+    const [submit, setSubmit] = useState(false);
     const [newGame, setNewGame] = useState({
         title : '',
         description : '',
@@ -27,7 +29,21 @@ export default function NewGameForm(props){
         platforms : [],
         stores : [],
         developer : 0
-    })
+    });
+
+    const [validations, setValidations] = useState({
+        title : false,
+        description : false,
+        release : false,
+        img : false,
+        aditionalImg : false,
+        rating : false,
+        genres : false,
+        platforms : false,
+        stores : false,
+        developer : false
+
+    });
 
     useEffect(() => {
 
@@ -40,7 +56,7 @@ export default function NewGameForm(props){
             isLoading(false);
         }
 
-    }, [genres, platforms]);
+    }, [genres, platforms, developers, stores, error]);
 
 
 
@@ -51,71 +67,138 @@ export default function NewGameForm(props){
     }
 
     const onSubmit = (e) =>{
+
         e.preventDefault();
-   
-        if (newGame.title && newGame.description && newGame.release && newGame.img && newGame.rating && newGame.genres.length > 0 && newGame.platforms.length > 0 && newGame.developer && newGame.stores.length > 0){
+        
+
+        if (newGame.aditionalImg && !validations.aditionalImg){
+            return;
+        }
+
+        if (newGame.title && newGame.description && newGame.release && validations.img && newGame.rating && newGame.genres.length > 0 && newGame.platforms.length > 0 && newGame.developer && newGame.stores.length > 0){
 
             dispatch(postNewGame(newGame));
+            setSubmit(true);
+            e.target.reset();
+
+            setValidations({
+                title : false,
+                description : false,
+                release : false,
+                img : false,
+                aditionalImg : false,
+                rating : false,
+                genres : false,
+                platforms : false,
+                stores : false,
+                developer : false
+        
+            });
+
+            setNewGame({
+                title : '',
+                description : '',
+                release : '',
+                img : '',
+                aditionalImg : null,
+                rating : 0,
+                genres : [],
+                platforms : [],
+                stores : [],
+                developer : 0
+            });
         }
      
     }
 
     const onCheckboxHandler = (e) => {
 
+        const auxVal = {...validations};
+
         if (e.target.checked){
 
             setNewGame({...newGame, ...newGame[e.target.name].push(e.target.value)})
 
-         
+            auxVal[e.target.name] = true;
         } else{
             
             const auxGame = {...newGame};
             auxGame[e.target.name] = newGame[e.target.name].filter((value) => value !== e.target.value);
-            setNewGame(auxGame)
-        } 
+            setNewGame(auxGame);
 
-       
+            auxVal[e.target.name] = false;
+        } 
+      
+        setValidations(auxVal);
     }
 
     const onSelectHandler = (e) => {
 
         if (e.target.value !== null && e.target.value !== '-- OPCIONES --'){
             setNewGame({...newGame, developer : e.target.value});
+            setValidations({...validations, developer : true});
         } else{
             setNewGame({...newGame, developer : null});
+            setValidations({...validations, developer : false});
         }
     }
 
     const onChangeHandler = (e) =>{
 
+        const auxVal = {...validations};
         const auxNewG = {...newGame};
-        auxNewG[e.target.name] = e.target.value;
-  
+
+        if (e.target.value){
+            auxNewG[e.target.name] = e.target.value;
+            auxVal[e.target.name] = true;
+        } else{
+            auxVal[e.target.name] = false;
+        }
+
+        setValidations(auxVal);
         setNewGame(auxNewG);
 
-      
     }
 
     const onStarHandler = (e) => {
+
+        if (!e.target.getAttribute('value')){
+            setValidations({...validations, rating: false});
+            setNewGame({...newGame, rating: 0});
+            return;
+        }
         
         setNewGame({...newGame, rating: e.target.getAttribute('value')});
+        setValidations({...validations, rating: true});
     }
 
     const handleImgChange = (e) =>{
         const file = e.target.files[0];
         const reader = new FileReader();
         const tag = e.target.name;
+        const auxVal = {...validations};
 
-        reader.onload = (e) => {
+        if (file && file.type.startsWith('image/')){
+            reader.onload = (e) => {
 
-            const auxNew = {...newGame};
+                const auxNew = {...newGame};
+    
+                auxNew[tag] = e.target.result;
+                setNewGame(auxNew);
+            };
+       
+            reader.readAsDataURL(file);
 
-            auxNew[tag] = e.target.result;
-            setNewGame(auxNew);
-        };
-   
-        reader.readAsDataURL(file);
+            auxVal[e.target.name] = true;
+        } else{
+            auxVal[e.target.name] = false;
+        }
+       
+        setValidations(auxVal);
+        console.log(validations)
     }
+
+
  
     return <div className={`${styles.formContainer}`}>
         <form action='' onSubmit={onSubmit}>
@@ -123,32 +206,52 @@ export default function NewGameForm(props){
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`}  htmlFor="ngameTitle">Titulo del juego: </label>
                 <input onChange={onChangeHandler} className={`${styles.formInput}`} name='title' type="text"/>
+                <div className={`${styles.formMessage}`}>
+                    {!validations.title  ? <p className={`${styles.formError}`}>¡El titulo no puede estar vacio!</p> : false}
+                 </div>
             </div> <br />
+
+            
 
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`} htmlFor="description">Descripción: </label>
                 <textarea onChange={onChangeHandler} className={`${styles.formInput}`} name="description" id="gameDescription" cols="30" rows="10"></textarea>
+                <div className={`${styles.formMessage}`}>
+                    {!validations.description  ? <p className={`${styles.formError}`}>¡La descripcion no puede estar vacia!</p> : false}
+                 </div>
             </div> <br />
     
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`} htmlFor="release">Fecha de lanzamiento: </label>
                 <input onChange={onChangeHandler} className={`${styles.formInput}`} name='release' type='date'  min='1952-10-18' max={fechaActual}/>
+                <div className={`${styles.formMessage}`}>
+                    {!validations.release  ? <p className={`${styles.formError}`}>¡Selecciona una fecha de lanzamiento!</p> : false}
+                 </div>
             </div> <br />
 
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`} htmlFor="img">Imagen: </label>
                 <input onChange={handleImgChange} name='img' className={`${styles.formInput}`} type="file"/>
+                <div className={`${styles.formMessage}`}>
+                    {!validations.img  ? <p className={`${styles.formError}`}>¡Selecciona una imagen (JPG, PNG, JPEG, GIF)!</p> : false}
+                 </div>
             </div> <br />
 
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`} htmlFor="optionalImg">Imagen adicional (opcional): </label>
                 <input onChange={handleImgChange} name='aditionalImg' className={`${styles.formInput}`} type="file"/> 
+                <div className={`${styles.formMessage}`}>
+                    {!validations.aditionalImg && newGame.aditionalImg  ? <p className={`${styles.formError}`}>¡Selecciona una imagen valida (JPG, PNG, JPEG, GIF)!</p> : false}
+                 </div>
             </div> <br />
 
             <div className={`${styles.formGroup}`}>
                 <label className={`${styles.formLabel}`} htmlFor="rating">Rating: </label>    
                 <Stars numStars = '5'
                         onClick={onStarHandler}></Stars>
+                <div className={`${styles.formMessage}`}>
+                    {!validations.rating  ? <p className={`${styles.formError}`}>¡Selecciona un puntaje!</p> : false}
+                 </div>
             </div>     
 
             <div className={`${styles.formGroup}`}>
@@ -158,7 +261,9 @@ export default function NewGameForm(props){
                         name='genres'
                         onClick={onCheckboxHandler}></Options>    
                     
-
+                <div className={`${styles.formMessage}`}>
+                    {!validations.genres  ? <p className={`${styles.formError}`}>¡Selecciona minimo un genero!</p> : false}
+                 </div>
             </div> 
 
 
@@ -169,7 +274,9 @@ export default function NewGameForm(props){
                         name='platforms'
                         onClick={onCheckboxHandler}></Options>    
                     
-
+                <div className={`${styles.formMessage}`}>
+                    {!validations.platforms  ? <p className={`${styles.formError}`}>¡Selecciona minimo una plataforma!</p> : false}
+                 </div>
             </div> 
 
             <div className={`${styles.formGroup}`}>
@@ -180,7 +287,9 @@ export default function NewGameForm(props){
                     {developers.map((dev) => <option key={dev.id} value={dev.id}>{dev.name}</option>)}
                 </select>
                     
-
+                <div className={`${styles.formMessage}`}>
+                    {!validations.developer ? <p className={`${styles.formError}`}>¡Selecciona un desarrollador!</p> : false}
+                 </div>
             </div> 
 
             <div className={`${styles.formGroup}`}>
@@ -190,14 +299,17 @@ export default function NewGameForm(props){
                         name='stores'
                         onClick={onCheckboxHandler}></Options>    
                     
-
+                <div className={`${styles.formMessage}`}>
+                    {!validations.stores !== ''  ? <p className={`${styles.formError}`}>¡Selecciona minimo una tienda!</p> : false}
+                 </div>
             </div> 
 
 
             <button className={`${styles.formSubmit}`}>CREAR</button>
                 
             <div className={`${styles.formMessage}`}>
-                
+                {error.error !== '' && submit ? <p className={`${styles.formError}`}>{error.message}</p> : false}
+                {error.error === '' && submit ? <p className={`${styles.formSuccess}`}>Juego cargado con exito!</p> : false}    
             </div>
         </form>
     </div>

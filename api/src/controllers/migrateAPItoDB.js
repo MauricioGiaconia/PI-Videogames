@@ -14,13 +14,20 @@ const pushAllStores = async() =>{
             return {'name' : store.name};
         });
 
-        Stores.bulkCreate(names, { ignoreDuplicates: true, fields: ['name'] })
-                .then(() => {
-                    console.log('Stores creadas correctamente');
-                })
-                .catch((error) => {
-                    console.error('Error al crear stores:', error);
-                });
+        try{
+            for (let data of names) {
+                // busca si el registro ya existe por el nombre
+                const dataExists = await Stores.findOne({ where: { name: data.name } });
+                // si no existe el registro, lo crea
+                if (!dataExists) {
+                  await Stores.create(data);
+                }
+              }
+
+              console.log("Stores cargadas con exito");
+        } catch (err){
+            console.log("Error al cargar las stores!");
+        }
 
     } catch (err) {
 
@@ -38,13 +45,20 @@ const pushAllPlatforms = async() =>{
             return {'name' : platform.name};
         });
 
-        Platforms.bulkCreate(names, { ignoreDuplicates: true, fields: ['name'] })
-                .then(() => {
-                    console.log('Plataformas creadas correctamente');
-                })
-                .catch((error) => {
-                    console.error('Error al crear plataformas:', error);
-                });
+        try{
+            for (let data of names) {
+                // busca si el registro ya existe por el nombre
+                const dataExists = await Platforms.findOne({ where: { name: data.name } });
+                // si no existe el registro, lo crea
+                if (!dataExists) {
+                  await Platforms.create(data);
+                }
+              }
+
+              console.log("Plataformas cargadas con exito");
+        } catch (err){
+            console.log("Error al cargar las plataformas!");
+        }
 
     } catch (err) {
 
@@ -62,13 +76,20 @@ const pushAllGenres = async () => {
             return {'name' : genre.name};
         });
 
-        Genres.bulkCreate(names, { ignoreDuplicates: true, fields: ['name'] })
-                .then(() => {
-                    console.log('Generos creados correctamente');
-                })
-                .catch((error) => {
-                    console.error('Error al crear generos:', error);
-                });
+        try{
+            for (let data of names) {
+                // busca si el registro ya existe por el nombre
+                const dataExists = await Genres.findOne({ where: { name: data.name } });
+                // si no existe el registro, lo crea
+                if (!dataExists) {
+                  await Genres.create(data);
+                }
+              }
+
+              console.log("Generos cargados con exito");
+        } catch (err){
+            console.log("Error al cargar a los generos!");
+        }
 
     } catch (err) {
 
@@ -80,7 +101,7 @@ const pushAllGenres = async () => {
 const pushAllDevelopers = async () => {
     try {
        
-        const response = await axios.get(`https://api.rawg.io/api/developers?key=${API_KEY}`)
+        const response = await axios.get(`https://api.rawg.io/api/developers?key=${API_KEY}`);
 
         const names = response.data['results'].map((genre) => {
             return {'name' : genre.name};
@@ -90,14 +111,23 @@ const pushAllDevelopers = async () => {
         // juegos que no son AAA
         names.push({name : 'Indie'});
 
-        Developers.bulkCreate(names, { ignoreDuplicates: true, fields: ['name'] })
-                .then(() => {
-                    console.log('Desarrolladores creados correctamente');
-                })
-                .catch((error) => {
-                    console.error('Error al crear desarrolladores:', error);
-                });
+        try{
+            for (let data of names) {
+                // busca si el registro ya existe por el nombre
+                const dataExists = await Developers.findOne({ where: { name: data.name } });
+                // si no existe el registro, lo crea
+                if (!dataExists) {
+                  await Developers.create(data);
+                }
+              }
 
+              console.log("Desarrolladores cargados con exito");
+        } catch (err){
+            console.log("Error al cargar a los desarrolladores!");
+        }
+      
+
+      
     } catch (err) {
        
         return (`¡Error al traer a los desarrolladores!`);

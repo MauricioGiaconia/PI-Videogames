@@ -11,7 +11,7 @@ const postNewGame = async (req, res) =>{
             const newGame = await Videogames.create({
                 name : data.title,
                 description : data.description,
-                release : data.release,
+                released : data.release,
                 img : data.img,
                 aditionalImg : data.aditionalImg,
                 rating : data.rating,

@@ -23,7 +23,8 @@ const { conn } = require('./src/db.js');
 const { pushAllGenres, pushAllPlatforms, pushAllStores, pushAllDevelopers } = require('./src/controllers/migrateAPItoDB.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+// ACORDARSE DE PONER EL FORCE EN FALSE ASI NO SE REINICIA CADA VEZ QUE EL SV SE RESETEA
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     pushAllGenres();
     pushAllPlatforms();

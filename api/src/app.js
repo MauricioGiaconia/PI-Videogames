@@ -30,7 +30,7 @@ server.use('/videogames/detail', routes);
 server.use('/genres', routes);
 server.use('/developers', routes);
 server.use('/stores', routes);
-server.use('/createvideogame', routes);
+server.use('/videogames', routes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

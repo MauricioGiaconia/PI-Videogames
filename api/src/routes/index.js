@@ -21,6 +21,6 @@ router.get('/genres', (req, res) => {getGenres(req, res)});
 router.get('/platforms', (req, res) => {getPlatforms(req, res)});
 router.get('/developers', (req, res) => {getDevelopers(req, res)});
 router.get('/stores', (req, res) => {getStores(req, res)});
-router.post('/createvideogame', (req, res) => {postNewGame(req, res)})
+router.post('/videogames', (req, res) => {postNewGame(req, res)})
 
 module.exports = router;
