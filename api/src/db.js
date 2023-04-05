@@ -57,9 +57,6 @@ VideogameStores(sequelize);
 VideogamePlatforms(sequelize);
 VideogameDevelopers(sequelize);
 
-
-
-
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 Videogames.belongsToMany(Genres, { through: "videogameGenres" });

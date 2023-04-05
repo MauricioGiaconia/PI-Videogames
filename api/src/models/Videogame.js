@@ -24,17 +24,19 @@ const Videogame = (sequelize) => {
       allowNull: false
     },
     img: {
-      type: DataTypes.STRING,
+      type:DataTypes.BLOB,
       allowNull: false
     },
     aditionalImg: {
-      type: DataTypes.STRING,
+      type:DataTypes.BLOB,
       allowNull: true
     },
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
+  }, {
+    force: false
   });
 };
 

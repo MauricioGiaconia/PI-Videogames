@@ -31,6 +31,8 @@ const VideogameStores = (sequelize) => {
         }
     }
     
+  }, {
+    force: false
   });
 };
 

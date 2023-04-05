@@ -38,16 +38,6 @@ export default function Cards(props){
     }, [games, numPage]);
 
  
-   
-    const PrintGames = () => gamesToShow.map((game) => {
-        return <Card key = {game.id}
-                    title = {game.name}
-                    rating = {game.rating}
-                    release = {game.released}
-                    img = {game.background_image}></Card>
-    });
-
-
     if (isLoading){
         return <>
             <Loading></Loading>
@@ -55,7 +45,14 @@ export default function Cards(props){
             
         
     }
-    
+
+    const PrintGames = () => gamesToShow.map((game) => {
+        return <Card key = {game.id}
+                    title = {game.name}
+                    rating = {game.rating}
+                    release = {game.released}
+                    img = {game.background_image ? game.background_image : game.img}></Card>
+    });
 
     return <div className={`${styles.cardsContainer}`}>
         <PrintGames></PrintGames>

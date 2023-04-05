@@ -4,6 +4,7 @@ export const GET_GAMES = 'GET_GAMES';
 export const GET_GENRES = 'GET_GENRES';
 export const GET_DEVELOPERS = 'GET_DEVELOPERS';
 export const GET_PLATFORMS = 'GET_PLATFORMS';
+export const GET_STORES = 'GET_STORES';
 export const SET_ERROR = 'SET_ERROR';
 
 
@@ -67,5 +68,32 @@ export const getDevelopers = () =>{
         } catch(err){
             return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
         }
+    });
+}
+
+export const getStores = () =>{
+    return (async function (dispatch){
+        try{
+
+            const response = await axios.get(url + '/stores');
+
+            return dispatch({type: GET_STORES, payload: {stores : response.data}});
+
+        } catch(err){
+            return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
+        }
+    });
+}
+
+export const postNewGame = (game) =>{
+    return (async function (dispatch){
+        
+        try{
+            const response = await axios.post(url + '/createvideogame', game);
+            console.log(response.data['message']);
+        } catch(err){
+            return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
+        }
+        
     });
 }

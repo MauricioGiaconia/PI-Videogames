@@ -31,6 +31,8 @@ const VideogameGenres = (sequelize) => {
         }
     }
     
+  }, {
+    force: false
   });
 };
 

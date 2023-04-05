@@ -1,4 +1,5 @@
-const { Videogames, VideogameGenres } = require('../db');
+const { Videogames, VideogameGenres, VideogamePlatforms, VideogameStores, VideogameDevelopers } = require('../db');
+
 
 const postNewGame = async (req, res) =>{
 
@@ -6,9 +7,9 @@ const postNewGame = async (req, res) =>{
 
         const data = req.body;
 
-        if (data.name && data.description && data.release && data.img && data.rating && data.genres && data.platforms){
+        if (data.title && data.description && data.release && data.img && data.rating && data.genres && data.platforms && data.developer && data.stores){
             const newGame = await Videogames.create({
-                name : data.name,
+                name : data.title,
                 description : data.description,
                 release : data.release,
                 img : data.img,
@@ -38,12 +39,19 @@ const postNewGame = async (req, res) =>{
                 })
             }
 
+            await VideogameDevelopers.create({
+                videogameId : newGame.dataValues['id'],
+                developerId : data.developer
+            })
+
             return res.status(201).json({message : 'Juego cargado con exito'});
+        } else{
+            return res.status(200).json({message : 'Faltan datos necesarios para cargar el juego!'});
         }
 
         
 
-        return res.status(200).json({message : 'Faltan datos necesarios para cargar el juego!'});
+        
 
     } catch (err){
         console.log(err);

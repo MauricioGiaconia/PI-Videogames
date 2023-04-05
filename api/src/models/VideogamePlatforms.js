@@ -31,6 +31,8 @@ const VideogamePlatforms = (sequelize) => {
         }
     }
     
+  }, {
+    force: false
   });
 };
 

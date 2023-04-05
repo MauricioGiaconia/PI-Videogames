@@ -31,6 +31,8 @@ const VideogameDevelopers = (sequelize) => {
         }
     }
     
+  }, {
+    force: false
   });
 };
 

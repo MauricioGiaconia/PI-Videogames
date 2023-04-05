@@ -13,6 +13,8 @@ const Genre = (sequelize) =>{
             type : DataTypes.STRING,
             allowNull : false
         }
+    }, {
+        force: false
     })
 }
 
