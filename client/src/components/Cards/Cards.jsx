@@ -48,6 +48,7 @@ export default function Cards(props){
 
     const PrintGames = () => gamesToShow.map((game) => {
         return <Card key = {game.id}
+                    id = {game.id}
                     title = {game.name}
                     rating = {game.rating}
                     release = {game.released}

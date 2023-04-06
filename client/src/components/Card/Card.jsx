@@ -1,6 +1,9 @@
 import styles from './Card.module.css';
+import {Link} from 'react-router-dom';
 
 export default function Card(props){
+
+
     
     return <div className={`${styles.card}`}>
         
@@ -13,7 +16,7 @@ export default function Card(props){
 
         <div className={`${styles.cardButtons}`}>
             <button className={`${styles.btnFav}`}>Fav</button>
-            <button className={`${styles.btnMore}`}>I</button>
+            <Link className={`${styles.btnMore}`} to={`/videogames/detail/${props.id}`}>I</Link>
         </div>
         
     </div>

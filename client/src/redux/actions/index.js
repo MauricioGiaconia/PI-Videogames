@@ -5,6 +5,7 @@ export const GET_GENRES = 'GET_GENRES';
 export const GET_DEVELOPERS = 'GET_DEVELOPERS';
 export const GET_PLATFORMS = 'GET_PLATFORMS';
 export const GET_STORES = 'GET_STORES';
+export const GET_GAME = 'GET_GAME';
 export const SET_ERROR = 'SET_ERROR';
 
 
@@ -83,6 +84,20 @@ export const getStores = () =>{
             return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
         }
     });
+}
+
+export const getGame = (id, db = false) =>{
+    return (async function (dispatch){
+
+        try{
+            const response = await axios.get(url + `/videogames/detail?id=${id}&db=${db}`);
+
+            return dispatch({type: GET_GAME, payload: {game : response.data}});
+
+        } catch(err){
+            return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
+        }
+    })
 }
 
 export const postNewGame = (game) =>{

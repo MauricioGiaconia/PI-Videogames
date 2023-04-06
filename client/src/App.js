@@ -4,6 +4,7 @@ import Cards from './components/Cards/Cards';
 import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import NewGameForm from './components/NewGameForm/NewGameForm';
+import Detail from './components/Detail/Detail';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/videogames' element={<Cards></Cards>} />
           <Route path='/newVideogame' element={<NewGameForm></NewGameForm>} />
+          <Route path='/videogames/detail/:id' element={<Detail></Detail>}></Route>
         </Routes>
 
       

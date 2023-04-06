@@ -1,0 +1,55 @@
+.detailContainer{
+    background-color: #1a1a1a;
+    color: #fff;
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    animation: shadowExpand 5s infinite;
+    padding: 40px;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    
+}
+
+@keyframes shadowExpand {
+    0%{
+        box-shadow: 0px 0px 1.5px #f8c93c;
+    }
+    10%{
+        box-shadow: 0px 0px 2.0px #f8c93c;
+    }
+    20%{
+        box-shadow: 0px 0px 2.5px #f8c93c;
+    }
+    30%{
+        box-shadow: 0px 0px 3.0px #f8c93c;
+    }
+    40%{
+        box-shadow: 0px 0px 3.5px #f8c93c;
+    }
+    50%{
+        box-shadow: 0px 0px 4.0px #f8c93c;
+    }
+    60%{
+        box-shadow: 0px 0px 3.5px #f8c93c;
+    }
+    70%{
+        box-shadow: 0px 0px 3.0px #f8c93c;
+    }
+    80%{
+        box-shadow: 0px 0px 2.5px #f8c93c;
+    }
+    90%{
+        box-shadow: 0px 0px 2.0px #f8c93c;
+    }
+    100%{
+        box-shadow: 0px 0px 1.5px #f8c93c;
+    }
+    
+}

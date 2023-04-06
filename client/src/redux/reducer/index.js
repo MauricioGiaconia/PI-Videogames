@@ -1,4 +1,4 @@
-const {GET_GAMES, GET_GENRES, GET_PLATFORMS,GET_DEVELOPERS, GET_STORES, SET_ERROR} = require('../actions/index');
+const {GET_GAMES, GET_GENRES, GET_PLATFORMS,GET_DEVELOPERS, GET_STORES, GET_GAME, SET_ERROR} = require('../actions/index');
 
 const initialState = {
     games : [],
@@ -6,6 +6,7 @@ const initialState = {
     platforms : [],
     developers : [],
     stores : [],
+    gameById : [],
     gamesPerPage : 15,
     error: {
         error: '',
@@ -26,8 +27,10 @@ const rootReducer = (state = initialState, {type, payload}) => {
             return {...state, platforms: payload.platforms};
         case GET_DEVELOPERS:
             return {...state, developers: payload.developers};
-            case GET_STORES:
+        case GET_STORES:
                 return {...state, stores: payload.stores};
+        case GET_GAME:
+            return {...state, gameById: payload.game};
         case SET_ERROR:
             return {...state, error: {error: payload.error, message: payload.message}};
             
