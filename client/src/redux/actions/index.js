@@ -100,6 +100,10 @@ export const getGame = (id, db = false) =>{
     })
 }
 
+export const cleanGame = (dispatch) => {
+    return dispatch({type: GET_GAME, payload: {game : []}})
+}
+
 export const postNewGame = (game) =>{
     return (async function (dispatch){
         

@@ -15,8 +15,8 @@ export default function Card(props){
         <p>Release: {props.release.split('T')[0]}</p>
 
         <div className={`${styles.cardButtons}`}>
-            <button className={`${styles.btnFav}`}>Fav</button>
-            <Link className={`${styles.btnMore}`} to={`/videogames/detail/${props.id}`}>I</Link>
+           
+            <Link className={`${styles.btnMore}`} to={`/videogames/detail/${props.id}`}>ⓘ</Link>
         </div>
         
     </div>

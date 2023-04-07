@@ -1,6 +1,6 @@
 import Card from '../Card/Card.jsx';
 import {useSelector, useDispatch} from 'react-redux';
-import { getGames } from '../../redux/actions/index.js';
+import { cleanGame, getGames } from '../../redux/actions/index.js';
 import { useEffect, useState } from 'react';
 import styles from './Cards.module.css';
 import Loading from '../Loading/Loading.jsx';
@@ -16,6 +16,7 @@ export default function Cards(props){
 
  
     const totalGames = Math.round(games.length / gamesPerPage);
+    cleanGame(dispatch);
 
     useEffect(() => {
         
@@ -24,6 +25,7 @@ export default function Cards(props){
             dispatch(getGames());
             
             
+
         } else{
             const indexLastGame = numPage * gamesPerPage;
             const indexFirstGame = indexLastGame - gamesPerPage;

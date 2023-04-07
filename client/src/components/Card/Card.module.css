@@ -58,7 +58,6 @@
     padding: 10px;
 }
 
-.btnFav,
 .btnMore {
     background-color: #fff;
     border: none;
@@ -71,16 +70,12 @@
     text-decoration: none;
 }
 
-.cardButtons .btnFav {
-    background-color: #1a1a1a;
-    color: #fff;
-    margin-right: 5px;
-}
-
-.card button:hover {
+.btnMore:hover {
+    background-color: #000;
+    color: #f8c93c;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.card button:active {
+.btnMore:active {
     transform: translateY(1px);
 }

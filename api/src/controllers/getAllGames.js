@@ -9,6 +9,8 @@ const getAllGames = async(req, res) => {
     let allGames = [];
 
     try{
+
+        
         for (let i = 1; i <= 5; i++){
         
             
@@ -42,7 +44,6 @@ const getAllGames = async(req, res) => {
         
     } catch(err){
         res.status(404);
-        console.log(err);
         return res.json({
                 error : err,
                 message :`¡Error al traer los juegos!`
