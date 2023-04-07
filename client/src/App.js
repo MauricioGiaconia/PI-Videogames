@@ -5,9 +5,21 @@ import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import NewGameForm from './components/NewGameForm/NewGameForm';
 import Detail from './components/Detail/Detail';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGenres } from './redux/actions';
 
 
 function App() {
+  const genres = useSelector(state => state.genres);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      if (genres.length <= 0){
+          dispatch(getGenres());
+      }
+  }, []);
+
   return (
     <div className="App">
       <Nav></Nav>

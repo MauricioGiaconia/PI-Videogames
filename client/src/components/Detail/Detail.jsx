@@ -44,6 +44,7 @@ export default function Detail(props){
         </div>
         <h2>{gameDetail.name}</h2>
         <p>Rating: {gameDetail.rating}</p>
+        <p>Lanzamiento: {gameDetail.released.split('T')[0]}</p>
   
 
         <div className={`${styles.listsContainer}`}>

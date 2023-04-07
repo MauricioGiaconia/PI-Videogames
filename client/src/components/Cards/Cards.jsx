@@ -4,6 +4,7 @@ import { cleanGame, getGames } from '../../redux/actions/index.js';
 import { useEffect, useState } from 'react';
 import styles from './Cards.module.css';
 import Loading from '../Loading/Loading.jsx';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 
 export default function Cards(props){
 
@@ -58,6 +59,7 @@ export default function Cards(props){
     });
 
     return <div className={`${styles.cardsContainer}`}>
+        <SearchBar></SearchBar>
         <PrintGames></PrintGames>
 
         <div className={`${styles.pagination}`}>
