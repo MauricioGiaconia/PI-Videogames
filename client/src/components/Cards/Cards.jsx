@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import styles from './Cards.module.css';
 import Loading from '../Loading/Loading.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import Error from '../Error/Error.jsx';
 
 export default function Cards(props){
 
@@ -79,18 +80,24 @@ export default function Cards(props){
         
     }
 
+   
+
     return <div className={`${styles.cardsContainer}`}>
         <SearchBar onSearch = {onSearchHandler}
                     onOrder ={onOrderHandler}
                     onFilter = {onFilterHandler}></SearchBar>
-        <PrintGames></PrintGames>
+       
 
-        <div className={`${styles.pagination}`}>
-            {numPage > 1 ? <button onClick={() => {setNumPage(1)}}>│◀</button> : false}
-            {numPage > 1 ?<button onClick={() => {setNumPage(numPage - 1)}}>◀</button> : false}
-            {numPage < totalGames ? <button onClick={() => {setNumPage(numPage + 1)}}>▶</button> : false}
-            {numPage < totalGames ? <button onClick={() => {setNumPage(totalGames)}}>▶│</button> : false}
-        </div>
+        {games.length <= 0 ? <Error message = '¡No se encuentran juegos a listar!'></Error> : <>
+        
+            <PrintGames></PrintGames>
+            <div className={`${styles.pagination}`}>
+                {numPage > 1 ? <button onClick={() => {setNumPage(1)}}>│◀</button> : false}
+                {numPage > 1 ?<button onClick={() => {setNumPage(numPage - 1)}}>◀</button> : false}
+                {numPage < totalGames ? <button onClick={() => {setNumPage(numPage + 1)}}>▶</button> : false}
+                {numPage < totalGames ? <button onClick={() => {setNumPage(totalGames)}}>▶│</button> : false}
+            </div></>
+        }
     </div>
 
     

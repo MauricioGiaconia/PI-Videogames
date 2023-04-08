@@ -31,7 +31,7 @@ export default function NewGameForm(props){
         stores : [],
         developer : 0
     });
-
+    const [ratingVal, setRatingVal] = useState(false)
     const [validations, setValidations] = useState({
         title : false,
         description : false,
@@ -88,7 +88,6 @@ export default function NewGameForm(props){
                 release : false,
                 img : false,
                 aditionalImg : false,
-                rating : false,
                 genres : false,
                 platforms : false,
                 stores : false,
@@ -115,7 +114,6 @@ export default function NewGameForm(props){
     const onCheckboxHandler = (e) => {
 
         const auxVal = {...validations};
-
         if (e.target.checked){
 
             setNewGame({...newGame, ...newGame[e.target.name].push(e.target.value)})
@@ -129,7 +127,7 @@ export default function NewGameForm(props){
 
             auxVal[e.target.name] = false;
         } 
-      
+        
         setValidations(auxVal);
     }
 
@@ -164,13 +162,13 @@ export default function NewGameForm(props){
     const onStarHandler = (e) => {
 
         if (!e.target.getAttribute('value')){
-            setValidations({...validations, rating: false});
+            setRatingVal(false);
             setNewGame({...newGame, rating: 0});
             return;
         }
         
         setNewGame({...newGame, rating: e.target.getAttribute('value')});
-        setValidations({...validations, rating: true});
+        setRatingVal(true);
     }
 
     const handleImgChange = (e) =>{
@@ -251,7 +249,7 @@ export default function NewGameForm(props){
                 <Stars numStars = '5'
                         onClick={onStarHandler}></Stars>
                 <div className={`${styles.formMessage}`}>
-                    {!validations.rating  ? <p className={`${styles.formError}`}>¡Selecciona un puntaje!</p> : false}
+                    {!ratingVal ? <p className={`${styles.formError}`}>¡Selecciona un puntaje!</p> : false}
                  </div>
             </div>     
 

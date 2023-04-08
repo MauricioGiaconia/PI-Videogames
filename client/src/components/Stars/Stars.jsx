@@ -13,7 +13,10 @@ export default function Stars(props){
       
        
         for (let i = 1; i <= num; i++){
+
+           
             document.getElementById('star'+i).classList += ' ' + styles.starSelected;
+            
 
         }
         
@@ -31,18 +34,17 @@ export default function Stars(props){
     }
 
     const onStarClick = (e) => {
-
+        
+       
         if (!clicked){
             setClicked(true);
             if (props.onClick){
+                e.target.color = '#f8c93c'
                 props.onClick(e);
             }
         } else{
             setClicked(false);
         }
-       
-
-
         
     }
 
@@ -51,13 +53,13 @@ export default function Stars(props){
         let spans = [];
 
         for (let i = 1; i<=parseInt(props.numStars); i++){
-           spans.push(<span key={i} onClick={onStarClick} onMouseOut={onStarOut} onMouseOver={onStarHover} id={`star${i}`} className={`${styles.star}`} value={i}>★</span>);
+           spans.push(<span key={i} onClick={onStarClick} onMouseEnter={onStarHover} onMouseOut={onStarOut} id={`star${i}`} className={`${styles.star}`} value={i}>★</span>);
         }
 
         return spans;
     }
 
-    return <>
+    return <div>
         <GenerateSpans></GenerateSpans>
-    </>
+    </div>
 }
