@@ -41,18 +41,19 @@
 
 .listsContainer{
     margin: 10px auto;
-    padding: 10px;
     width: 100%;
 }
 
 
 .listsContainer ul{
     list-style: none;
+    float: left;
 }
 
 .listsContainer div{
     width: 33.33%;
     float: left;
+    padding:15px;
 }    
 
 @keyframes shadowExpand {

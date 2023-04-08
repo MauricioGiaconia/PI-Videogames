@@ -5,6 +5,7 @@ import { getGenres, getPlatforms, getDevelopers, getStores, postNewGame } from '
 import Loading from '../Loading/Loading';
 import Options from '../Options/Options';
 import Stars from '../Stars/Stars.jsx';
+import { getGames } from '../../redux/actions';
 
 
 export default function NewGameForm(props){
@@ -77,7 +78,7 @@ export default function NewGameForm(props){
 
         if (newGame.title && newGame.description && newGame.release && validations.img && newGame.rating && newGame.genres.length > 0 && newGame.platforms.length > 0 && newGame.developer && newGame.stores.length > 0){
 
-            dispatch(postNewGame(newGame));
+            dispatch(postNewGame(newGame)).then(()=>{dispatch(getGames())});
             setSubmit(true);
             e.target.reset();
 

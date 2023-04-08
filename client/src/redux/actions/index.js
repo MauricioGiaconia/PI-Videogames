@@ -6,7 +6,10 @@ export const GET_DEVELOPERS = 'GET_DEVELOPERS';
 export const GET_PLATFORMS = 'GET_PLATFORMS';
 export const GET_STORES = 'GET_STORES';
 export const GET_GAME = 'GET_GAME';
+export const RESET_GAMES = 'RESET_GAMES';
 export const SET_ERROR = 'SET_ERROR';
+export const SEARCH_NAME = 'SEARCH_NAME';
+export const SORT_ORDER_NAME = ' SORT_ORDER_NAME';
 
 
 const url = 'http://localhost:3001';
@@ -115,4 +118,16 @@ export const postNewGame = (game) =>{
         }
         
     });
+}
+
+export const resetToOriginalGames = (dispatch) => {
+    return dispatch({type: RESET_GAMES, payload : {}});
+}
+
+export const searchByName = (dispatch, name) => {
+    return dispatch({type: SEARCH_NAME, payload : name});
+}
+
+export const sortByName = (dispatch, order) =>{
+    return dispatch({type: SORT_ORDER_NAME, payload: order})
 }

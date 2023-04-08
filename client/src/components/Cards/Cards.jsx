@@ -1,6 +1,6 @@
 import Card from '../Card/Card.jsx';
 import {useSelector, useDispatch} from 'react-redux';
-import { cleanGame, getGames } from '../../redux/actions/index.js';
+import { cleanGame, getGames, resetToOriginalGames, searchByName, sortByName } from '../../redux/actions/index.js';
 import { useEffect, useState } from 'react';
 import styles from './Cards.module.css';
 import Loading from '../Loading/Loading.jsx';
@@ -12,6 +12,7 @@ export default function Cards(props){
     const games = useSelector((state) => state.games);
     const gamesPerPage = useSelector((state) => state.gamesPerPage);
     const [isLoading, setIsLoading] = useState(true);
+    const [firstLoading, setFirstLoading] = useState(true);
     const [numPage, setNumPage] = useState(1);
     const [gamesToShow, setGamesToShow] = useState([]);
 
@@ -21,18 +22,17 @@ export default function Cards(props){
 
     useEffect(() => {
         
-        if (games.length <= 0){
+        if (firstLoading){
 
-            dispatch(getGames());
-            
+            dispatch(getGames())
+            .finally(() => { setFirstLoading(false)});
+           
             
 
         } else{
             const indexLastGame = numPage * gamesPerPage;
             const indexFirstGame = indexLastGame - gamesPerPage;
             setGamesToShow(games.slice(indexFirstGame, indexLastGame));
-
-            
             setIsLoading(false);
         }
         
@@ -58,8 +58,24 @@ export default function Cards(props){
                     img = {game.background_image ? game.background_image : game.img}></Card>
     });
 
+    const onSearchHandler = (string) => {
+        const aux = string;
+        if (string === ' ' || aux.trim() === ''){
+            return resetToOriginalGames(dispatch);
+        }
+
+        searchByName(dispatch, string);
+    }
+
+    const onOrderHandler = (order) =>{
+     
+        sortByName(dispatch, order);
+        
+    }
+
     return <div className={`${styles.cardsContainer}`}>
-        <SearchBar></SearchBar>
+        <SearchBar onSearch = {onSearchHandler}
+                    onOrder ={onOrderHandler}></SearchBar>
         <PrintGames></PrintGames>
 
         <div className={`${styles.pagination}`}>

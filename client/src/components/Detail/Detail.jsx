@@ -50,14 +50,14 @@ export default function Detail(props){
         <div className={`${styles.listsContainer}`}>
 
             <div>
-                <h3>Generos: </h3>
+                <h3>Generos </h3>
                 <ul>
                     {gameDetail.genres.map((genre, index) => <li key={index}>{genre.name}</li>)}
                 </ul>
             </div>
 
             <div>
-                <h3>Plataformas: </h3>
+                <h3>Plataformas </h3>
                 <ul> {gameDetail.platforms.map((platform, index) => {
                         if (isNaN(id)){
                             return  <li key={index}>{platform.name}</li>
@@ -68,7 +68,7 @@ export default function Detail(props){
                 </ul>        
             </div>
             <div>
-                <h3>Stores: </h3>
+                <h3>Stores </h3>
                 <ul> {gameDetail.stores.map((store, index) => {
                         if (isNaN(id)){
                             return  <li key={index}>{store.name}</li>
