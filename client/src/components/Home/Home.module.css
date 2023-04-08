@@ -14,7 +14,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
+    max-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +51,7 @@
 }
 
 .logoContainer{
-    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
    
 }
@@ -62,4 +62,17 @@
 }
 
 
+@media (max-width: 1000px) {
+    .bannerContent{
+        flex-direction: row;
+    }
 
+    .pcContainer{
+        height: 200px; 
+        margin: 0 auto;
+    }
+
+    .columnas{
+        display: block;
+    }
+}

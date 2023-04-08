@@ -159,15 +159,15 @@ export default function NewGameForm(props){
 
     }
 
-    const onStarHandler = (e) => {
+    const onStarHandler = (value) => {
 
-        if (!e.target.getAttribute('value')){
+        if (!value){
             setRatingVal(false);
             setNewGame({...newGame, rating: 0});
             return;
         }
         
-        setNewGame({...newGame, rating: e.target.getAttribute('value')});
+        setNewGame({...newGame, rating: value});
         setRatingVal(true);
     }
 

@@ -11,7 +11,7 @@ export default function Cards(props){
 
     const dispatch = useDispatch();
     const games = useSelector((state) => state.games);
-    const gamesPerPage = useSelector((state) => state.gamesPerPage);
+    const gamesPerPage = 15;
     const [isLoading, setIsLoading] = useState(true);
     const [firstLoading, setFirstLoading] = useState(true);
     const [numPage, setNumPage] = useState(1);

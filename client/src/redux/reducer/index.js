@@ -11,7 +11,6 @@ const initialState = {
     developers : [],
     stores : [],
     gameById : [],
-    gamesPerPage : 15,
     error: {
         error: '',
         message: ''

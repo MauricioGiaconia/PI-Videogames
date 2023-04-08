@@ -28,3 +28,11 @@
     margin: 0 auto;
     margin-top: 5px;
 }
+
+@media (max-width: 1000px) {
+  .newsContainer{
+    width: 95%;
+    margin: 5px auto;
+    float: none;
+  }
+}
