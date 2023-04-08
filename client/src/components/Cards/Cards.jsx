@@ -1,6 +1,6 @@
 import Card from '../Card/Card.jsx';
 import {useSelector, useDispatch} from 'react-redux';
-import { cleanGame, getGames, resetToOriginalGames, searchByName, sortByName } from '../../redux/actions/index.js';
+import { cleanGame, filterGames, getGames, resetToOriginalGames, searchByName, sortByOrder } from '../../redux/actions/index.js';
 import { useEffect, useState } from 'react';
 import styles from './Cards.module.css';
 import Loading from '../Loading/Loading.jsx';
@@ -15,9 +15,8 @@ export default function Cards(props){
     const [firstLoading, setFirstLoading] = useState(true);
     const [numPage, setNumPage] = useState(1);
     const [gamesToShow, setGamesToShow] = useState([]);
-
  
-    const totalGames = Math.round(games.length / gamesPerPage);
+    const totalGames = Math.ceil(games.length / gamesPerPage);
     cleanGame(dispatch);
 
     useEffect(() => {
@@ -69,13 +68,21 @@ export default function Cards(props){
 
     const onOrderHandler = (order) =>{
      
-        sortByName(dispatch, order);
+        sortByOrder(dispatch, order);
+        
+    }
+
+    const onFilterHandler = (value) => {
+        if (value !== 'false'){
+            filterGames(dispatch, value);
+        }
         
     }
 
     return <div className={`${styles.cardsContainer}`}>
         <SearchBar onSearch = {onSearchHandler}
-                    onOrder ={onOrderHandler}></SearchBar>
+                    onOrder ={onOrderHandler}
+                    onFilter = {onFilterHandler}></SearchBar>
         <PrintGames></PrintGames>
 
         <div className={`${styles.pagination}`}>

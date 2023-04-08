@@ -196,7 +196,7 @@ export default function NewGameForm(props){
         }
        
         setValidations(auxVal);
-        console.log(validations)
+     
     }
 
 

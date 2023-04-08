@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const {videogames} = require('../db');
+const {Videogames, Genres} = require('../db');
 const axios = require('axios');
 const {API_KEY} = process.env;
 
@@ -21,7 +21,13 @@ const getAllGames = async(req, res) => {
         
         }
 
-        const dbResponse = await videogames.findAll();
+        const dbResponse = await Videogames.findAll({
+            include: [
+            {
+                model: Genres,
+                attributes: ['name'],
+                through: { attributes: [] }
+            }]});
 
         let imgBase64 = '';
         let imgData = '';
@@ -44,6 +50,7 @@ const getAllGames = async(req, res) => {
         
     } catch(err){
         res.status(404);
+        console.log(err)
         return res.json({
                 error : err,
                 message :`¡Error al traer los juegos!`

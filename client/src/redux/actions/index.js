@@ -9,7 +9,8 @@ export const GET_GAME = 'GET_GAME';
 export const RESET_GAMES = 'RESET_GAMES';
 export const SET_ERROR = 'SET_ERROR';
 export const SEARCH_NAME = 'SEARCH_NAME';
-export const SORT_ORDER_NAME = ' SORT_ORDER_NAME';
+export const SORT_ORDER = 'SORT_ORDER';
+export const FILTER_GAMES = 'FILTER_GAMES'
 
 
 const url = 'http://localhost:3001';
@@ -128,6 +129,11 @@ export const searchByName = (dispatch, name) => {
     return dispatch({type: SEARCH_NAME, payload : name});
 }
 
-export const sortByName = (dispatch, order) =>{
-    return dispatch({type: SORT_ORDER_NAME, payload: order})
+export const sortByOrder = (dispatch, order) =>{
+    return dispatch({type: SORT_ORDER, payload: order});
+}
+
+export const filterGames = (dispatch, value) => {
+  
+    return dispatch({type: FILTER_GAMES, payload: value});
 }
