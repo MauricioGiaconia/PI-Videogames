@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import styles from './Stars.module.css';
 
@@ -20,7 +21,7 @@ export default function Stars(props){
         let spans = [];
 
         for (let i = 1; i<=parseInt(props.numStars); i++){
-           spans.push(<span key={i} onClick={() => {onStarClick(i)}} id={`star${i}`} className={clicked >= i ? `${styles.star} ${styles.starSelected}` : `${styles.star}`} value={i}>★</span>);
+           spans.push(<span key={i} onClick={() => {onStarClick(i)}} id={`star${i}`} className={clicked >= i ? `${styles.starSelected} ${styles.star} ` : `${styles.star}`} value={i}>★</span>);
         }
 
         return spans;
