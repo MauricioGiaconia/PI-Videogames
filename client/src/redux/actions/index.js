@@ -13,14 +13,12 @@ export const SORT_ORDER = 'SORT_ORDER';
 export const FILTER_GAMES = 'FILTER_GAMES'
 
 
-const url = 'http://localhost:3001';
-
-export const getGames = (xUrl = `${url}/videogames`) => {
+export const getGames = () => {
 
     return (async function (dispatch){
 
         try{
-            const response = await axios.get(`${xUrl}`);
+            const response = await axios.get('/videogames');
 
             return dispatch({ type: GET_GAMES, payload: { games: response.data} });
                   
@@ -38,7 +36,7 @@ export const getGenres = () =>{
     return (async function (dispatch){
         try{
 
-            const response = await axios.get(url + '/genres');
+            const response = await axios.get('/genres');
 
             return dispatch({type: GET_GENRES, payload: {genres : response.data}});
 
@@ -52,7 +50,7 @@ export const getPlatforms = () =>{
     return (async function (dispatch){
         try{
 
-            const response = await axios.get(url + '/platforms');
+            const response = await axios.get('/platforms');
 
             return dispatch({type: GET_PLATFORMS, payload: {platforms : response.data}});
 
@@ -66,7 +64,7 @@ export const getDevelopers = () =>{
     return (async function (dispatch){
         try{
 
-            const response = await axios.get(url + '/developers');
+            const response = await axios.get('/developers');
 
             return dispatch({type: GET_DEVELOPERS, payload: {developers : response.data}});
 
@@ -80,7 +78,7 @@ export const getStores = () =>{
     return (async function (dispatch){
         try{
 
-            const response = await axios.get(url + '/stores');
+            const response = await axios.get('/stores');
 
             return dispatch({type: GET_STORES, payload: {stores : response.data}});
 
@@ -94,7 +92,7 @@ export const getGame = (id, db = false) =>{
     return (async function (dispatch){
 
         try{
-            const response = await axios.get(url + `/videogames/detail?id=${id}&db=${db}`);
+            const response = await axios.get(`/videogames/detail?id=${id}&db=${db}`);
 
             return dispatch({type: GET_GAME, payload: {game : response.data}});
 
@@ -112,7 +110,7 @@ export const postNewGame = (game) =>{
     return (async function (dispatch){
         
         try{
-            const response = await axios.post(url + '/videogames', game);
+            const response = await axios.post('/videogames', game);
             console.log(response.data['message']);
         } catch(err){
             return dispatch({type: SET_ERROR, payload: {error: err.response.status, message: err.response.data['message']}})
