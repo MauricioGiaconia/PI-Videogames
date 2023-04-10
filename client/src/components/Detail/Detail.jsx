@@ -22,8 +22,6 @@ export default function Detail(props){
 
     }, []);
 
-    console.log(gameDetail)
-
     function deleteTags(textWithTags){
         const div = document.createElement('div');
         div.innerHTML = textWithTags;
