@@ -68,15 +68,16 @@ export default function Cards(props){
     }
 
     const onOrderHandler = (order) =>{
-     
+        
         sortByOrder(dispatch, order);
         
     }
 
     const onFilterHandler = (value) => {
-        if (value !== 'false'){
-            filterGames(dispatch, value);
-        }
+       
+        setNumPage(1);
+        filterGames(dispatch, value);
+        
         
     }
 
