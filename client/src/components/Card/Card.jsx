@@ -13,7 +13,7 @@ export default function Card(props){
         <p>Release: {props.release.split('T')[0]}</p>
 
         <ul>
-            {props.genres.map((genre) => <li className={`${styles.listGenre}`} key={genre.id}>{genre.name}</li>)}
+            {props.genres.map((genre) => <li key={genre.name+''+genre.id} className={`${styles.listGenre}`}>{genre.name}</li>)}
         </ul>
 
         <div className={`${styles.cardButtons}`}>
