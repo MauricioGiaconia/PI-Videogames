@@ -21,7 +21,7 @@ const getAllGames = async(req, res) => {
                 
             allGames = [...allGames, ...response.data.results];
 
-            allGames.slice(0, 100);
+            allGames = allGames.slice(0, 100);
         
         }
 
