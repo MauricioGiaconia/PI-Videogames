@@ -55,6 +55,7 @@ export default function Cards(props){
                     title = {game.name}
                     rating = {game.rating}
                     release = {game.released}
+                    genres = {game.genres}
                     img = {game.background_image ? game.background_image : game.img}></Card>
     });
 

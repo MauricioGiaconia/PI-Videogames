@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 export default function Card(props){
 
-
+    console.log(props)
     
     return <div className={`${styles.card}`}>
         
@@ -13,6 +13,10 @@ export default function Card(props){
         <h3>{props.title}</h3>
         <h4>Rating: {props.rating}</h4>
         <p>Release: {props.release.split('T')[0]}</p>
+
+        <ul>
+            {props.genres.map((genre) => <li className={`${styles.listGenre}`} key={genre.id}>{genre.name}</li>)}
+        </ul>
 
         <div className={`${styles.cardButtons}`}>
            

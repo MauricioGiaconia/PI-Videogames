@@ -13,6 +13,7 @@ describe('Componente Stars', () =>{
         expect(starValue).toBe("1");
     });
     it ('La estrella debe llamar a su evento onClick al ser clickeada', () => {
+        
         const onClickTest = jest.fn();
 
         const {getByText} = render(<Stars numStars='1'

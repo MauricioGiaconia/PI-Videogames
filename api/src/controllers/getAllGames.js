@@ -16,10 +16,12 @@ const getAllGames = async(req, res) => {
         for (let i = 1; i <= 3; i++){
         
             
-            const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}&pageSize=${pageSize}`)  
+            const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}&pageSize=${pageSize}`);  
                 
                 
             allGames = [...allGames, ...response.data.results];
+
+            allGames.slice(0, 100);
         
         }
 
@@ -39,8 +41,6 @@ const getAllGames = async(req, res) => {
          
             imgBase64 = game.img.toString('base64');
             const buffer = Buffer.from(imgBase64, 'base64');
-
-         
             imgData = `${buffer}`
             game.img = imgData;
         }
