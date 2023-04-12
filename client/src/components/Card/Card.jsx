@@ -22,4 +22,4 @@ export default function Card(props){
         </div>
         
     </div>
-    }
+}
