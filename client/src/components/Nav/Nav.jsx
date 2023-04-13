@@ -1,7 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
 import styles from './Nav.module.css';
-import homeImg from '../../img/home.png';
-import videogameImg from '../../img/videogame.png';
 
 export default function Nag(props){
 
