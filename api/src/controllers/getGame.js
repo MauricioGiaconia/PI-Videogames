@@ -14,9 +14,9 @@ const getGame = async (req, res) => {
 
         if (isDatabase === 'false') {
 
-            const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-            res.status(200);
-            return res.json(response.data);
+            axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`).then((data) =>  {res.status(200)
+            return res.json(data.data)});
+           
         } else {
             Videogames.findByPk(id, {
                 include: [

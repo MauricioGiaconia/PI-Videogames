@@ -21,10 +21,11 @@ const getAllGames = async(req, res) => {
                 
             allGames = [...allGames, ...response.data.results];
 
-            allGames = allGames.slice(0, 100);
+            
         
         }
-
+        allGames = allGames.slice(0, 100);
+        
         const dbResponse = await Videogames.findAll({
             include: [
             {

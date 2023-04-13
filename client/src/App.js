@@ -7,10 +7,19 @@ import NewGameForm from './components/NewGameForm/NewGameForm';
 import Detail from './components/Detail/Detail';
 import Footer from './components/Footer/Footer';
 import axios from 'axios';  
+import { useEffect } from 'react';
+import { getGenres } from './redux/actions';
+import { useDispatch } from 'react-redux';
+
 axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+    dispatch(getGenres());
+  }, [])
 
   return (
     <div className="App">
